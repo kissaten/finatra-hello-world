@@ -1,0 +1,8 @@
+{
+  "name": "Finatra on Heroku",
+  "description": "A barebones Finatra app (Twitter OSS), which can easily be deployed to Heroku.",
+  "website": "https://github.com/kissaten/finatra-hello-world",
+  "image": "heroku/scala",
+  "success_url": "/hi?name=NewHerokuUser",
+  "addons": []
+}
