@@ -1,50 +1,21 @@
-# Finatra Hello World Heroku Example Application
+# Finatra Hello World Heroku Example
+
+Press this button to deploy the app:
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+## Overview
 
 * A simple example finatra application that is deployable to [Heroku](https://heroku.com) and [integrates](https://github.com/rlazoti/finagle-metrics) with [Dropwizard/Codahale metrics](https://github.com/dropwizard/metrics).
-* Finatra examples are built in different ways depending on the branch you are in:
+* This app is borrowed from the [Finatra repository](https://github.com/twitter/finatra/tree/master/examples/hello-world-heroku).
 
-If you're in master or a feature branch
-----------------------------------------------------------
-* Development from master or feature branches is not currently supported for this example. Please switch to a release branch and see the instructions below.
+## Deploy manually
 
-If you're in a tagged release branch (e.g. [v2.1.0](https://github.com/twitter/finatra/tree/v2.1.0))
-----------------------------------------------------------
-
-### Run the server on Heroku ###
-Copy the hello-world-heroku directory contents (minus the .git directory) to another location locally.
+Clone this app:
 
 ```
-$ cp -R finatra-hello-world-heroku ~/finatra-hello-world
-```
-
-Initialize a git repository in the new directory location:
-
-```
-$ cd ~/finatra-hello-world
-$ git init
-Initialized empty Git repository in ~/finatra-hello-world/.git/
-```
-
-Create a `.gitignore` file (notice the newlines):
-
-```
-$ echo ".DS_Store
-classes/
-target/
-sbt-launch.jar" > .gitignore
-```
-
-Commit all the files to master:
-
-```
-$ git add .
-$ git commit -m "Initial commit."
-```
-
-Compile and stage the application:
-
-```
-$ sbt compile stage
+$ git clone https://github.com/kissaten/finatra-hello-world
+$ cd finatra-hello-world
 ```
 
 Make sure you have the [Heroku Toolbelt](https://toolbelt.heroku.com/) [installed](https://devcenter.heroku.com/articles/getting-started-with-scala#set-up).
@@ -75,17 +46,21 @@ remote: Building source:
 You can then open the application in a browser with `heroku open`, e.g.:
 
 ```
-heroku open hi?name=foo
+$ heroku open hi?name=foo
 ```
 
+## Run the example locally with Forego
 
-### Run the example locally with Foreman ###
-
-See the [Heroku documentation](https://devcenter.heroku.com/articles/getting-started-with-scala#run-the-app-locally) on running an app locally with Foreman.
-
+Build the app:
 
 ```
-$ PORT=8000 foreman start web
+$ sbt stage
+```
+
+Run the app:
+
+```
+$ heroku local web
 19:47:56 web.1  | started with pid 77663
 19:47:59 web.1  | I 0528 02:47:59.058 THREAD1: HttpMuxer[/admin/metrics.json] = com.twitter.finagle.stats.MetricsExporter(<function1>)
 19:47:59 web.1  | I 0528 02:47:59.096 THREAD1: HttpMuxer[/admin/per_host_metrics.json] = com.twitter.finagle.stats.HostMetricsExporter(<function1>)
@@ -95,4 +70,4 @@ $ PORT=8000 foreman start web
 19:48:00 web.1  | GET     /hi
 ```
 
-The app will now be running at [http://localhost:8000/hi?name=foo](http://localhost:8000/hi?name=foo). `Ctrl-C` to exit.
+The app will now be running at [http://localhost:5000/hi?name=foo](http://localhost:5000/hi?name=foo). `Ctrl-C` to exit.
